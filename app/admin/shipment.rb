@@ -1,4 +1,5 @@
 ActiveAdmin.register Shipment do
+  permit_params :label, :addressee_id, :addressee_type, :sent_on
 
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters

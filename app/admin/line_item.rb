@@ -1,4 +1,5 @@
 ActiveAdmin.register LineItem do
+  permit_params :item_id, :item_type, :shipment_id, :qty
 
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
