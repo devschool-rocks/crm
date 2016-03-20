@@ -1,4 +1,6 @@
 ActiveAdmin.register LineItem do
+  menu false
+
   permit_params :item_id, :item_type, :shipment_id, :qty
 
 # See permitted parameters documentation:

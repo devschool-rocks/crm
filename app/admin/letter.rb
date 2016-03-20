@@ -1,4 +1,6 @@
 ActiveAdmin.register Letter do
+  menu parent: "Shipments"
+
   permit_params :label, :contents
 
 # See permitted parameters documentation:

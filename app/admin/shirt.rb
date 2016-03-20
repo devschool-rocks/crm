@@ -1,4 +1,6 @@
 ActiveAdmin.register Shirt do
+  menu parent: "Shipments"
+
   permit_params :brand, :style, :color, :size, :qty, :gender_id
 
 # See permitted parameters documentation:

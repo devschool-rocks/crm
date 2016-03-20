@@ -1,4 +1,6 @@
 ActiveAdmin.register Instructor do
+  menu priority: 3
+
   permit_params :name
 
   show do

@@ -1,4 +1,5 @@
 ActiveAdmin.register Student do
+  menu priority: 2
   permit_params :name, :birthday, :enrolled_on, :instructor_id
 
   # See permitted parameters documentation:

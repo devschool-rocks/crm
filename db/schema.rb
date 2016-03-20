@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160319050151) do
+ActiveRecord::Schema.define(version: 20160320002403) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,6 +64,15 @@ ActiveRecord::Schema.define(version: 20160319050151) do
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
+  create_table "enrollment_invites", force: :cascade do |t|
+    t.integer  "lead_id"
+    t.integer  "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "enrollment_invites", ["lead_id"], name: "index_enrollment_invites_on_lead_id", using: :btree
+
   create_table "genders", force: :cascade do |t|
     t.string   "label"
     t.datetime "created_at", null: false
@@ -75,6 +84,23 @@ ActiveRecord::Schema.define(version: 20160319050151) do
     t.date     "hired_on"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "interview_requests", force: :cascade do |t|
+    t.integer  "lead_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "interview_requests", ["lead_id"], name: "index_interview_requests_on_lead_id", using: :btree
+
+  create_table "leads", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "source"
+    t.datetime "last_contacted_at"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
   create_table "letters", force: :cascade do |t|
@@ -138,6 +164,8 @@ ActiveRecord::Schema.define(version: 20160319050151) do
 
   add_index "students", ["instructor_id"], name: "index_students_on_instructor_id", using: :btree
 
+  add_foreign_key "enrollment_invites", "leads"
+  add_foreign_key "interview_requests", "leads"
   add_foreign_key "line_items", "shipments"
   add_foreign_key "shirts", "genders"
   add_foreign_key "students", "instructors"

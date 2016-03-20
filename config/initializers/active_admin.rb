@@ -1,4 +1,10 @@
 ActiveAdmin.setup do |config|
+  config.namespace :admin do |admin|
+    admin.build_menu do |menu|
+      menu.add label: "Lookups", priority: 1000
+    end
+  end
+
   # == Site Title
   #
   # Set the title that is displayed on the main layout

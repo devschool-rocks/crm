@@ -1,4 +1,6 @@
 ActiveAdmin.register Address do
+  menu false
+
   permit_params :street_1, :street_2, :city, :state, :postal_code, :country,
                 :addressee_id, :addressee_type
 
