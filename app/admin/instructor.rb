@@ -1,12 +1,12 @@
 ActiveAdmin.register Instructor do
   menu priority: 3
 
-  permit_params :name
+  permit_params :first_name, :last_name, :email, :slack_name, :hired_on
 
   show do
     attributes_table do
       row :name
-      table_for instructor.students.order('name ASC') do
+      table_for instructor.students.order('last_name ASC') do
         column "Students" do |student|
           link_to student.name, [ :admin, student ]
         end
