@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160325232024) do
+ActiveRecord::Schema.define(version: 20160320002403) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,7 +80,10 @@ ActiveRecord::Schema.define(version: 20160325232024) do
   end
 
   create_table "instructors", force: :cascade do |t|
-    t.string   "name"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "slack_name"
     t.date     "hired_on"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -137,14 +140,15 @@ ActiveRecord::Schema.define(version: 20160325232024) do
     t.string   "brand"
     t.string   "style"
     t.string   "color"
-    t.string   "size"
     t.string   "qty"
+    t.integer  "size_id"
     t.integer  "gender_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   add_index "shirts", ["gender_id"], name: "index_shirts_on_gender_id", using: :btree
+  add_index "shirts", ["size_id"], name: "index_shirts_on_size_id", using: :btree
 
   create_table "sizes", force: :cascade do |t|
     t.string   "name"
@@ -153,14 +157,17 @@ ActiveRecord::Schema.define(version: 20160325232024) do
   end
 
   create_table "students", force: :cascade do |t|
-    t.string   "name"
-    t.string   "birthday"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "slack_name"
+    t.string   "email"
+    t.date     "birthday"
     t.date     "enrolled_on"
     t.integer  "instructor_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
     t.integer  "size_id"
     t.integer  "gender_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   add_index "students", ["gender_id"], name: "index_students_on_gender_id", using: :btree
@@ -171,6 +178,7 @@ ActiveRecord::Schema.define(version: 20160325232024) do
   add_foreign_key "interview_requests", "leads"
   add_foreign_key "line_items", "shipments"
   add_foreign_key "shirts", "genders"
+  add_foreign_key "shirts", "sizes"
   add_foreign_key "students", "genders"
   add_foreign_key "students", "instructors"
   add_foreign_key "students", "sizes"

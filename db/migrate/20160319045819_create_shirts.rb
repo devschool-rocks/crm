@@ -4,8 +4,8 @@ class CreateShirts < ActiveRecord::Migration
       t.string :brand
       t.string :style
       t.string :color
-      t.string :size
       t.string :qty
+      t.references :size, index: true, foreign_key: true
       t.references :gender, index: true, foreign_key: true
 
       t.timestamps null: false
