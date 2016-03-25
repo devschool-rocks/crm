@@ -1,9 +1,9 @@
 %w[Male Female].each do |g|
-  Gender.create label: g
+  Gender.create name: g
 end
 
 %w[Small Medium Large X-Large XX-Large].each do |s|
-  Size.create label: s
+  Size.create name: s
 end
 
 
@@ -26,7 +26,7 @@ if Rails.env.development?
     instructor.create_address street_1: '#296 Francisco Marquez', city: "Puerto Vallarta",
       state: "Jalisco", country: "Mexico"
 
-    Student.create(name: "Student A", birthday: "Oct 10th", shirt_size: "L (m)",
+    Student.create(name: "Student A", birthday: "Oct 10th",
                    instructor: instructor, enrolled_on: 10.days.ago).tap do |student|
       student.create_address street_1: '#6969 Francisco St', city: "San Francisco",
         state: "CA", country: "United States", postal_code: 92220
@@ -37,7 +37,7 @@ if Rails.env.development?
     instructor.create_address street_1: '1992 Vista way', city: "San Diego",
       postal_code: 92017, state: "CA", country: "USA"
 
-    Student.create(name: "Student B", birthday: "Jan 5th", shirt_size: "L (m)",
+    Student.create(name: "Student B", birthday: "Jan 5th",
                    instructor: instructor, enrolled_on: 10.days.ago).tap do |student|
       student.create_address street_1: '2732 Wall St', city: "Quincy",
         state: "OH", country: "United States", postal_code: 67872

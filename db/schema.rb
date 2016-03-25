@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160320002403) do
+ActiveRecord::Schema.define(version: 20160325232024) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(version: 20160320002403) do
   add_index "enrollment_invites", ["lead_id"], name: "index_enrollment_invites_on_lead_id", using: :btree
 
   create_table "genders", force: :cascade do |t|
-    t.string   "label"
+    t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -147,7 +147,7 @@ ActiveRecord::Schema.define(version: 20160320002403) do
   add_index "shirts", ["gender_id"], name: "index_shirts_on_gender_id", using: :btree
 
   create_table "sizes", force: :cascade do |t|
-    t.string   "label"
+    t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -157,16 +157,21 @@ ActiveRecord::Schema.define(version: 20160320002403) do
     t.string   "birthday"
     t.date     "enrolled_on"
     t.integer  "instructor_id"
-    t.string   "shirt_size"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.integer  "size_id"
+    t.integer  "gender_id"
   end
 
+  add_index "students", ["gender_id"], name: "index_students_on_gender_id", using: :btree
   add_index "students", ["instructor_id"], name: "index_students_on_instructor_id", using: :btree
+  add_index "students", ["size_id"], name: "index_students_on_size_id", using: :btree
 
   add_foreign_key "enrollment_invites", "leads"
   add_foreign_key "interview_requests", "leads"
   add_foreign_key "line_items", "shipments"
   add_foreign_key "shirts", "genders"
+  add_foreign_key "students", "genders"
   add_foreign_key "students", "instructors"
+  add_foreign_key "students", "sizes"
 end
