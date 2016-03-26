@@ -35,4 +35,8 @@ ActiveAdmin.register Student do
       end
     end
   end
+
+  action_item :view, only: :show do
+    link_to 'Add another', new_admin_student_path
+  end
 end
