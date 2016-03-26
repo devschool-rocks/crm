@@ -1,11 +1,4 @@
 ActiveAdmin.setup do |config|
-
-  config.before_filter do
-    authenticate_or_request_with_http_basic("Application") do |name, password|
-      name == "devschool" && password == "rocks"
-    end
-  end
-
   config.namespace :admin do |admin|
     admin.build_menu do |menu|
       menu.add label: "Lookups", priority: 1000
