@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160320002403) do
+ActiveRecord::Schema.define(version: 20160326045651) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,19 @@ ActiveRecord::Schema.define(version: 20160320002403) do
 
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "deals", force: :cascade do |t|
+    t.integer  "lead_id"
+    t.integer  "student_id"
+    t.decimal  "price"
+    t.date     "offered_on"
+    t.date     "closed_on"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "deals", ["lead_id"], name: "index_deals_on_lead_id", using: :btree
+  add_index "deals", ["student_id"], name: "index_deals_on_student_id", using: :btree
 
   create_table "enrollment_invites", force: :cascade do |t|
     t.integer  "lead_id"
@@ -174,6 +187,8 @@ ActiveRecord::Schema.define(version: 20160320002403) do
   add_index "students", ["instructor_id"], name: "index_students_on_instructor_id", using: :btree
   add_index "students", ["size_id"], name: "index_students_on_size_id", using: :btree
 
+  add_foreign_key "deals", "leads"
+  add_foreign_key "deals", "students"
   add_foreign_key "enrollment_invites", "leads"
   add_foreign_key "interview_requests", "leads"
   add_foreign_key "line_items", "shipments"

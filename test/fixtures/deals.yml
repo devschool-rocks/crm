@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  lead_id: 
+  student_id: 
+  price: 9.99
+  offered_on: 2016-03-25
+  closed_on: 2016-03-25
+
+two:
+  lead_id: 
+  student_id: 
+  price: 9.99
+  offered_on: 2016-03-25
+  closed_on: 2016-03-25

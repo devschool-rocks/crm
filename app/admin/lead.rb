@@ -1,5 +1,5 @@
 ActiveAdmin.register Lead do
-  menu priority: 2
+  menu priority: 1
 
   permit_params :name, :email, :source
 
