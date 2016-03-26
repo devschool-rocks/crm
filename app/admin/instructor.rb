@@ -3,6 +3,14 @@ ActiveAdmin.register Instructor do
 
   permit_params :first_name, :last_name, :email, :slack_name, :hired_on
 
+  index do
+    column :name
+    column :email
+    column :slack_name
+    column :hired_on
+    actions
+  end
+
   show do
     attributes_table do
       row :name
