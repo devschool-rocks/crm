@@ -8,4 +8,8 @@ class Student < ActiveRecord::Base
   def name
     "#{first_name} #{last_name}"
   end
+
+  def birthday_month_day
+    birthday && birthday.strftime("%B %e")
+  end
 end

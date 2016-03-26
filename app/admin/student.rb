@@ -8,7 +8,7 @@ ActiveAdmin.register Student do
     column :slack_name
     column :email
     column :birthday do |student|
-      student.birthday.strftime("%B %e")
+      student.birthday_month_day
     end
     column :enrolled_on
     actions
